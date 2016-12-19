@@ -20,6 +20,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -30,6 +31,8 @@ import java.util.Map;
 
 
 public class Connector {
+
+    final static Logger logger = Logger.getLogger(Connector.class);
 
     private String baseUrl;
     private String apiKey;
@@ -60,8 +63,11 @@ public class Connector {
         try {
             CloseableHttpClient httpclient = HttpClients.createDefault();
             URI uri = createUrl(request);
+            logger.debug("Sending HTTP "+request.getMethod()+" to "+uri.toString());
             HttpUriRequest httpRequest = createHttpUriRequest(request,uri.toString());
             Response response = httpclient.execute(httpRequest, responseHandler);
+            logger.debug("Response code: "+response.getHttpCode());
+            logger.debug("Response data: "+response.getContent());
             if (response.isOk()) {
                 if (response.hasContent()) {
                     return gson.fromJson(response.getContent(),responseType);
@@ -117,6 +123,7 @@ public class Connector {
                 if (request.hasEntity()) {
                     String json = gson.toJson(request.getEntity());
                     Charset utf8Charset = Charset.forName("UTF-8");
+                    logger.debug("Data: "+json);
                     post.setEntity(new StringEntity(json, Charset.forName("UTF-8")));
                     post.setHeader("Content-Type", ContentType.create("application/json",utf8Charset).toString());
                 }
@@ -127,6 +134,7 @@ public class Connector {
                 HttpPut put = new HttpPut(url);
                 if (request.hasEntity()) {
                     String json = gson.toJson(request.getEntity());
+                    logger.debug("Data: "+json);
                     put.setEntity(new StringEntity(json, Charset.forName("UTF-8")));
                     put.setHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
                 }
@@ -135,7 +143,6 @@ public class Connector {
             }
             case HttpDelete.METHOD_NAME: {
                 httpRequest = new HttpDelete(url);
-
                 break;
             }
         }
