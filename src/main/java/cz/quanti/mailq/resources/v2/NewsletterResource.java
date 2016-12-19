@@ -36,7 +36,7 @@ public class NewsletterResource extends BaseResource {
     }
 
     public TagsEntity getTags() throws InvalidRequestException, ApiException {
-        Request request = Request.builder(HttpPost.METHOD_NAME,"/newsletters/tags").build();
+        Request request = Request.builder(HttpGet.METHOD_NAME,"/newsletters/tags").build();
         return this.getConnector().send(request,TagsEntity.class);
     }
 

@@ -51,6 +51,7 @@ public class DefaultModule extends AbstractModule {
                 .registerTypeAdapter(LogMessagesEntity.class, new LogMessagesEntitySerializer(temporaryGson))
                 .registerTypeAdapter(RecipientsListEntriesEntity.class, new RecipientsListEntriesEntitySerializer(temporaryGson))
                 .registerTypeAdapter(EmailAddressesEntity.class, new EmailAddressesEntitySerializer(temporaryGson))
+                .registerTypeAdapter(TagsEntity.class, new TagsEntitySerializer(temporaryGson))
                 .registerTypeAdapter(SenderEmailsEntity.class, new SenderEmailsEntitySerializer(temporaryGson))
                 .registerTypeAdapter(UsersEntity.class, new UsersEntitySerializer(temporaryGson))
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
