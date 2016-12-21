@@ -55,12 +55,22 @@ public class MailQ {
 
     /**
      * Get all campaigns
+     * @return CampaignEntity
+     * @throws ApiException
+     * @throws InvalidRequestException
+     */
+    public CampaignsEntity getCampaigns() throws ApiException, InvalidRequestException {
+        return this.getCampaigns(Pagination.DEFAULT);
+    }
+
+    /**
+     * Get all campaigns
      * @param pagination
      * @return CampaignEntity
      * @throws ApiException
      * @throws InvalidRequestException
      */
-    public CampaignsEntity getCampaings(Pagination pagination) throws ApiException, InvalidRequestException {
+    public CampaignsEntity getCampaigns(Pagination pagination) throws ApiException, InvalidRequestException {
         return this.campaignResource.getCampaigns(pagination);
     }
 
@@ -71,7 +81,7 @@ public class MailQ {
      * @throws ApiException
      * @throws InvalidRequestException
      */
-    public CampaignEntity getCampaing(Long id) throws ApiException, InvalidRequestException {
+    public CampaignEntity getCampaign(Long id) throws ApiException, InvalidRequestException {
         return this.campaignResource.getCampaign(id);
     }
 
@@ -116,6 +126,17 @@ public class MailQ {
     /**
      * Get all global unsubscribers
      * @param from - filter to unsubscriptions created after this datetime
+     * @return UnsubscribersEntity
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public UnsubscribersEntity getUnsubscribers(LocalDateTime from) throws InvalidRequestException, ApiException {
+        return this.getUnsubscribers(from,Pagination.DEFAULT);
+    }
+
+    /**
+     * Get all global unsubscribers
+     * @param from - filter to unsubscriptions created after this datetime
      * @param pagination
      * @return UnsubscribersEntity
      * @throws InvalidRequestException
@@ -148,6 +169,16 @@ public class MailQ {
 
     /**
      * Get all log messages from system
+     * @return LogMessagesEntity
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public LogMessagesEntity getLogMessages() throws InvalidRequestException, ApiException {
+        return this.getLogMessages(Pagination.DEFAULT);
+    }
+
+    /**
+     * Get all log messages from system
      * @param pagination
      * @return LogMessagesEntity
      * @throws InvalidRequestException
@@ -166,6 +197,16 @@ public class MailQ {
      */
     public LogMessageEntity getLogMessage(Long id) throws InvalidRequestException, ApiException {
         return this.logMessageResource.getLogMessage(id);
+    }
+
+    /**
+     * Get newsletters of company
+     * @return NewslettersEntity
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public NewslettersEntity getNewsletters() throws InvalidRequestException, ApiException {
+        return this.getNewsletters(Pagination.DEFAULT);
     }
 
     /**
@@ -280,6 +321,16 @@ public class MailQ {
 
     /**
      * Get SMS newsletters
+     * @return SmsNewslettersEntity
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public SmsNewslettersEntity getSmsNewsletters() throws InvalidRequestException, ApiException {
+        return this.getSmsNewsletters(Pagination.DEFAULT);
+    }
+
+    /**
+     * Get SMS newsletters
      * @param pagination
      * @return SmsNewslettersEntity
      * @throws InvalidRequestException
@@ -367,6 +418,16 @@ public class MailQ {
 
     /**
      * Get notifications
+     * @return NotificationsEntity
+     * @throws ApiException
+     * @throws InvalidRequestException
+     */
+    public NotificationsEntity getNotifications() throws ApiException, InvalidRequestException  {
+        return this.getNotifications(Pagination.DEFAULT);
+    }
+
+    /**
+     * Get notifications
      * @param pagination
      * @return NotificationsEntity
      * @throws ApiException
@@ -430,6 +491,18 @@ public class MailQ {
      */
     public NotificationDataEntity sendNotificationEmail(Long notificationId, NotificationDataEntity notificationData) throws ApiException, InvalidRequestException {
         return this.notificationResource.sendNotification(notificationId,notificationData);
+    }
+
+    /**
+     * Get notifications data. You can find all notifications send to specific e-mail address.
+     * @param notificationId
+     * @param email
+     * @return NotificationsDataEntity
+     * @throws ApiException
+     * @throws InvalidRequestException
+     */
+    public NotificationsDataEntity getNotificationsData(Long notificationId, String email) throws ApiException, InvalidRequestException {
+        return this.getNotificationsData(notificationId,email,Pagination.DEFAULT);
     }
 
     /**
@@ -566,8 +639,8 @@ public class MailQ {
      * @throws ApiException
      * @throws InvalidRequestException
      */
-    public RecipientsListsEntity getRecipientsListsByEmail(String email) throws ApiException, InvalidRequestException {
-        return this.recipientsListResource.getRecipientsListsByEmail(email);
+    public RecipientsListsEntity getRecipientsListsByEmail(String email, Pagination pagination) throws ApiException, InvalidRequestException {
+        return this.recipientsListResource.getRecipientsListsByEmail(email,pagination);
     }
 
     /**
@@ -645,6 +718,17 @@ public class MailQ {
     /**
      * Get entries from recipients list
      * @param recipientsListId
+     * @return RecipientsListEntriesEntity
+     * @throws ApiException
+     * @throws InvalidRequestException
+     */
+    public RecipientsListEntriesEntity getRecipientsFromList(Long recipientsListId) throws ApiException, InvalidRequestException {
+        return this.getRecipientsFromList(recipientsListId, Pagination.DEFAULT);
+    }
+
+    /**
+     * Get entries from recipients list
+     * @param recipientsListId
      * @param pagination
      * @return RecipientsListEntriesEntity
      * @throws ApiException
@@ -714,6 +798,18 @@ public class MailQ {
             Set<String> emailsSet = new HashSet<>(Arrays.asList(emails));
             this.recipientsListResource.unsubscribe(recipientsListId,emailsSet);
         }
+    }
+
+
+    /**
+     * Get unsubscribers from recipients list
+     * @param recipientsListId
+     * @return UnsubscribersEntity
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public UnsubscribersEntity getUnsubscribers(Long recipientsListId) throws InvalidRequestException, ApiException {
+        return this.recipientsListResource.getUnsubscribers(recipientsListId, Pagination.DEFAULT);
     }
 
     /**
