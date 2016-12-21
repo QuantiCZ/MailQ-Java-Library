@@ -40,11 +40,23 @@ public class SmsNotificationDataEntity extends  BaseEntity {
         return message;
     }
 
-    public void setToNumber(String toNumber) {
-        this.toNumber = toNumber;
+    public SmsNotificationDataEntity setId(String id) {
+        this.id = id;
+        return this;
     }
 
-    public void setData(Map<String, Object> data) {
+    public SmsNotificationDataEntity setToNumber(String toNumber) {
+        this.toNumber = toNumber;
+        return this;
+    }
+
+    public SmsNotificationDataEntity setData(Map<String, Object> data) {
         this.data = data;
+        return this;
+    }
+
+    public SmsNotificationDataEntity addData(String key, Object value) {
+        this.data.put(key,value);
+        return this;
     }
 }

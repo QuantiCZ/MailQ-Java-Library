@@ -35,8 +35,11 @@ public class RecipientsListResource extends BaseResource {
         return this.getConnector().send(request,RecipientsListsEntity.class);
     }
 
-    public RecipientsListsEntity getRecipientsListsByEmail(String email) throws ApiException, InvalidRequestException {
-        Request request = Request.builder(HttpGet.METHOD_NAME,"/recipients-lists").parameter("email",email)
+    public RecipientsListsEntity getRecipientsListsByEmail(String email, Pagination pagination) throws ApiException, InvalidRequestException {
+        Request request = Request.builder(HttpGet.METHOD_NAME,"/recipients-lists")
+                .parameter("email",email)
+                .parameter("limit",pagination.getLimit().toString())
+                .parameter("offset",pagination.getOffset().toString())
                 .build();
         return this.getConnector().send(request,RecipientsListsEntity.class);
     }

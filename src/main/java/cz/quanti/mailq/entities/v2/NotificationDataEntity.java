@@ -2,10 +2,7 @@ package cz.quanti.mailq.entities.v2;
 
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class NotificationDataEntity extends BaseEntity{
 
@@ -80,9 +77,17 @@ public class NotificationDataEntity extends BaseEntity{
         return this;
     }
 
+    public NotificationDataEntity setCc(String... cc) {
+        return this.setCc(new HashSet<>(Arrays.asList(cc)));
+    }
+
     public NotificationDataEntity setBcc(Set<String> bcc) {
         this.bcc = bcc;
         return this;
+    }
+
+    public NotificationDataEntity setBcc(String... bcc) {
+        return this.setBcc(new HashSet<>(Arrays.asList(bcc)));
     }
 
     public NotificationDataEntity setDateFrom(LocalDateTime dateFrom) {

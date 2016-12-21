@@ -2,16 +2,13 @@ package cz.quanti.mailq.entities.v2;
 
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class RecipientsListEntryEntity extends BaseEntity {
 
 
     private String email;
-    private Map<String,Object> data;
+    private Map<String,Object> data = new HashMap<>();
 
     public String getEmail() {
         return email;
@@ -28,6 +25,11 @@ public class RecipientsListEntryEntity extends BaseEntity {
 
     public RecipientsListEntryEntity setData(Map<String, Object> data) {
         this.data = data;
+        return this;
+    }
+
+    public RecipientsListEntryEntity addData(String key, Object value) {
+        this.data.put(key,value);
         return this;
     }
 

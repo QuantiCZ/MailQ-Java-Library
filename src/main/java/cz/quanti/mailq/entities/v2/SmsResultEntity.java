@@ -1,10 +1,12 @@
 package cz.quanti.mailq.entities.v2;
 
 
+import cz.quanti.mailq.entities.v2.enums.SmsResult;
+
 public class SmsResultEntity {
 
     private String id;
-    private String result;
+    private SmsResult result;
     private String message;
     private Integer code;
 
@@ -12,7 +14,7 @@ public class SmsResultEntity {
         return id;
     }
 
-    public String getResult() {
+    public SmsResult getResult() {
         return result;
     }
 
@@ -22,6 +24,10 @@ public class SmsResultEntity {
 
     public Integer getCode() {
         return code;
+    }
+
+    public boolean isOk() {
+        return SmsResult.SUCCESS.equals(this.result);
     }
 
 }

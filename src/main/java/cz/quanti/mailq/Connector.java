@@ -21,6 +21,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -98,7 +99,7 @@ public class Connector {
     private URI createUrl(Request request) throws InvalidRequestException {
         try {
             URIBuilder builder = new URIBuilder();
-            String url = request.isCompanyRelated() ? baseUrl+"/companies/"+companyId : baseUrl;
+            String url = request.isCompanyRelated() ? String.join("/",this.baseUrl,"companies",this.companyId.toString()) : baseUrl;
             URI tempURI = new URL(url).toURI();
             builder.setScheme(tempURI.getScheme()).setHost(tempURI.getHost()).setPort(tempURI.getPort()).setPath(tempURI.getPath()+request.getPath());
             Map<String,String> parameters = request.getParameters();
@@ -122,10 +123,9 @@ public class Connector {
                 HttpPost post = new HttpPost(url);
                 if (request.hasEntity()) {
                     String json = gson.toJson(request.getEntity());
-                    Charset utf8Charset = Charset.forName("UTF-8");
                     logger.debug("Data: "+json);
                     post.setEntity(new StringEntity(json, Charset.forName("UTF-8")));
-                    post.setHeader("Content-Type", ContentType.create("application/json",utf8Charset).toString());
+                    post.setHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
                 }
                 httpRequest = post;
                 break;
@@ -145,6 +145,8 @@ public class Connector {
                 httpRequest = new HttpDelete(url);
                 break;
             }
+            default:
+                throw new NotImplementedException();
         }
         for (String headerName: request.getHeaders().keySet()) {
             httpRequest.addHeader(headerName,request.getHeaders().get(headerName));
