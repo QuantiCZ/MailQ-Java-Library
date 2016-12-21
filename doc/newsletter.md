@@ -3,7 +3,7 @@
 ### Get newsletters
 
 ```java
-for (NewsletterEntity newsletter: mailQ.getNewsletters(Pagination.DEFAULT)) {
+for (NewsletterEntity newsletter: mailQ.getNewsletters()) {
     System.out.println(newsletter.getName());
 }
 ```

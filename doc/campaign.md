@@ -3,7 +3,7 @@
 #### Get campaigns
 
 ```java
-for (CampaignEntity campaign : mailQ.getCampaigns(Pagination.DEFAULT)) {
+for (CampaignEntity campaign : mailQ.getCampaigns()) {
     System.out.println(campaign.getName());
 }
 ```

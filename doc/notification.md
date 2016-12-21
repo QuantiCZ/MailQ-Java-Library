@@ -3,7 +3,7 @@
 ### Get notifications
 
 ```java
-for(NotificationEntity notification : mailQ.getNotifications(Pagination.DEFAULT)) {
+for(NotificationEntity notification : mailQ.getNotifications()) {
     System.out.println(notification.getName());
 }
 ```

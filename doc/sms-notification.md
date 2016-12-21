@@ -3,7 +3,7 @@
 ### Get SMS notifications
 
 ```java
-for (SmsNotificationEntity smsNotification : mailQ.getSmsNotifications(Pagination.DEFAULT)) {
+for (SmsNotificationEntity smsNotification : mailQ.getSmsNotifications()) {
     System.out.println(smsNotification.getName());
 }
 ```

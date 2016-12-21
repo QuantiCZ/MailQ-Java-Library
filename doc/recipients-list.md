@@ -3,7 +3,7 @@
 ### Get recipients lists
 
 ```java
-for (RecipientsListEntity recipientsList : mailQ.getRecipientsLists(Pagination.DEFAULT)) {
+for (RecipientsListEntity recipientsList : mailQ.getRecipientsLists()) {
     System.out.println(recipientsList.getName());
 }
 ```
@@ -13,7 +13,7 @@ for (RecipientsListEntity recipientsList : mailQ.getRecipientsLists(Pagination.D
 This will list all recipients list which contains given e-mail address.
 
 ```java
-for (RecipientsListEntity recipientsList : mailQ.getRecipientsListsByEmail("john.doe@example.org",Pagination.DEFAULT)) {
+for (RecipientsListEntity recipientsList : mailQ.getRecipientsListsByEmail("john.doe@example.org")) {
     System.out.println(recipientsList.getName());
 }
 ```
@@ -74,7 +74,7 @@ mailQ.addRecipientsToList(324L,recipientsListEntryEntityList);
 ### Get recipients in recipients list
 
 ```java
-for (RecipientsListEntryEntity entry : mailQ.getRecipientsFromList(1L,Pagination.DEFAULT)) {
+for (RecipientsListEntryEntity entry : mailQ.getRecipientsFromList(1L)) {
     System.out.println(entry.getEmail());
 }
 ```
@@ -99,7 +99,7 @@ mailQ.deleteRecipientFromList(1L,"john.doe@example.org");
 ### Get recipients list unsubscribers
 
 ```java
-for (UnsubscriberEntity unsubscriber : mailQ.getUnsubscribers(1L,Pagination.DEFAULT)) {
+for (UnsubscriberEntity unsubscriber : mailQ.getUnsubscribers(1L)) {
     System.out.println(unsubscriber.getEmail());
 }
 ```

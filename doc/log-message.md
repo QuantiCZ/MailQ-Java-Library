@@ -3,7 +3,7 @@
 ### Get log messages
 
 ```java
-for (LogMessageEntity logMessage : mailQ.getLogMessages(Pagination.DEFAULT)) {
+for (LogMessageEntity logMessage : mailQ.getLogMessages()) {
     System.out.println(logMessage.getText());
 }
 ```
