@@ -21,7 +21,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -146,7 +145,7 @@ public class Connector {
                 break;
             }
             default:
-                throw new NotImplementedException();
+                throw new UnsupportedOperationException();
         }
         for (String headerName: request.getHeaders().keySet()) {
             httpRequest.addHeader(headerName,request.getHeaders().get(headerName));
