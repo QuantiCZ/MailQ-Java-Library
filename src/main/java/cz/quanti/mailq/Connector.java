@@ -12,6 +12,8 @@ import cz.quanti.mailq.entities.v2.ErrorEntity;
 import cz.quanti.mailq.exceptions.ApiException;
 import cz.quanti.mailq.exceptions.InvalidRequestException;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
@@ -22,6 +24,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -49,10 +52,13 @@ public class Connector {
         this.gson = gson;
     }
 
-    private ResponseHandler<Response> responseHandler = response -> {
-        int status = response.getStatusLine().getStatusCode();
-        HttpEntity entity = response.getEntity();
-        return new Response(entity != null ? EntityUtils.toString(entity) : null,status);
+    private ResponseHandler<Response> responseHandler = new ResponseHandler<Response>() {
+        @Override
+        public Response handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
+            int status = httpResponse.getStatusLine().getStatusCode();
+            HttpEntity entity = httpResponse.getEntity();
+            return new Response(entity != null ? EntityUtils.toString(entity) : null,status);
+        }
     };
 
     public EmptyResponse send(Request request) throws ApiException, InvalidRequestException {
