@@ -7,7 +7,6 @@ import java.util.*;
 public class NotificationDataEntity extends BaseEntity{
 
     private String id;
-    private String email;
     private String replyToEmail;
     private Map<String,Object> data = new HashMap<>();
     private List<NotificationAttachmentEntity> attachments;
@@ -24,8 +23,8 @@ public class NotificationDataEntity extends BaseEntity{
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRecipientEmail() {
+        return recipientEmail;
     }
 
     public String getReplyToEmail() {
