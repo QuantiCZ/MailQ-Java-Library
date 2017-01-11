@@ -32,6 +32,10 @@ public class SmsNotificationEntity extends BaseEntity {
         return company;
     }
 
+    public String getTemplate() {
+        return template;
+    }
+
     public SmsNotificationEntity setName(String name) {
         this.name = name;
         return this;
