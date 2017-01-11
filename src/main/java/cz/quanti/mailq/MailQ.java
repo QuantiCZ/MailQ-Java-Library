@@ -96,6 +96,16 @@ public class MailQ {
     }
 
     /**
+     * Regenerate API key
+     * @return apiKey - new API key, you have to use new API key in next request
+     * @throws ApiException
+     * @throws InvalidRequestException
+     */
+    public String regenerateApiKey() throws ApiException, InvalidRequestException {
+        return this.companyResource.regenerateApiKey();
+    }
+
+    /**
      * Unsubscribe email addresses from all recipients lists. This is global unsubscribe. If you want to
      * unsubscribe only from specific recipients list check unsubscribe method with recipients list ID parameter.
      * @param emails - email addresses
