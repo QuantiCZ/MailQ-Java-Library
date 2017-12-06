@@ -22,7 +22,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -35,7 +36,7 @@ import java.util.Map;
 
 public class Connector {
 
-    final static Logger logger = Logger.getLogger(Connector.class);
+    final static Logger logger = LogManager.getLogger(Connector.class);
 
     private String baseUrl;
     private String apiKey;

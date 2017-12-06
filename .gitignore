@@ -80,3 +80,8 @@ buildNumber.properties
 
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
+
+### Eclipse ###
+.classpath
+.project
+.settings
