@@ -4,7 +4,7 @@
     <groupId>cz.quanti.mailq</groupId>
     <artifactId>connector</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.3</version>
+    <version>0.2.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/QuantiCZ/MailQ-Java-Library</url>
     <description>Library for connection to the mailing system MailQ.</description>

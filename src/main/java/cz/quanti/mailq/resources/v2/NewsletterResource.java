@@ -11,6 +11,7 @@ import cz.quanti.mailq.exceptions.ApiException;
 import cz.quanti.mailq.exceptions.InvalidRequestException;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 
@@ -52,6 +53,11 @@ public class NewsletterResource extends BaseResource {
 
     public void updateNewsletter(NewsletterEntity newsletter) throws ApiException, InvalidRequestException {
         Request request = Request.builder(HttpPut.METHOD_NAME,"/newsletters/"+newsletter.getId()).entity(newsletter).build();
+        this.getConnector().send(request);
+    }
+    
+    public void updatePreparedNewsletter(PreparedNewsletterEntity preparedNewsletter) throws ApiException, InvalidRequestException {
+        Request request = Request.builder(HttpPatch.METHOD_NAME,"/newsletters/"+preparedNewsletter.getId()).entity(preparedNewsletter).build();
         this.getConnector().send(request);
     }
 

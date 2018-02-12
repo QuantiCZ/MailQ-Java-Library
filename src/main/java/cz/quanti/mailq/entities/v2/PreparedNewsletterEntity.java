@@ -1,14 +1,11 @@
 package cz.quanti.mailq.entities.v2;
 
-
 import cz.quanti.mailq.entities.v2.enums.NewsletterStatus;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsletterEntity extends BaseEntity  {
-
+public class PreparedNewsletterEntity extends BaseEntity{
+    
     private Long id;
     private String name;
     private String code;
@@ -16,17 +13,12 @@ public class NewsletterEntity extends BaseEntity  {
     private String sendAs;
     private String senderEmail;
     private NewsletterStatus status;
-    private LocalDateTime from;
-    private LocalDateTime to;
-    private Boolean automaticTime;
-    private Long recipientsListId;
     private String campaign;
     private List<TagEntity> tags;
     private LinkEntity company;
-
     private String templateUrl;
     private String unsubscribeTemplateUrl;
-    private String csvUrl;
+    private String text;
 
     public Long getId() {
         return id;
@@ -56,20 +48,20 @@ public class NewsletterEntity extends BaseEntity  {
         return status;
     }
 
-    public LocalDateTime getFrom() {
-        return from;
+    public List<TagEntity> getTags() {
+        return tags;
     }
 
-    public LocalDateTime getTo() {
-        return to;
+    public String getTemplateUrl() {
+        return templateUrl;
     }
 
-    public Boolean getAutomaticTime() {
-        return automaticTime;
+    public String getUnsubscribeTemplateUrl() {
+        return unsubscribeTemplateUrl;
     }
 
-    public Long getRecipientsListId() {
-        return recipientsListId;
+    public String getText() {
+        return text;
     }
 
     public String getCampaign() {
@@ -80,57 +72,37 @@ public class NewsletterEntity extends BaseEntity  {
         return company;
     }
 
-    public NewsletterEntity setName(String name) {
+    public PreparedNewsletterEntity setName(String name) {
         this.name = name;
         return this;
     }
 
-    public NewsletterEntity setCode(String code) {
+    public PreparedNewsletterEntity setCode(String code) {
         this.code = code;
         return this;
     }
 
-    public NewsletterEntity setSubject(String subject) {
+    public PreparedNewsletterEntity setSubject(String subject) {
         this.subject = subject;
         return this;
     }
 
-    public NewsletterEntity setSendAs(String sendAs) {
+    public PreparedNewsletterEntity setSendAs(String sendAs) {
         this.sendAs = sendAs;
         return this;
     }
 
-    public NewsletterEntity setSenderEmail(String senderEmail) {
+    public PreparedNewsletterEntity setSenderEmail(String senderEmail) {
         this.senderEmail = senderEmail;
         return this;
     }
 
-    public NewsletterEntity setFrom(LocalDateTime from) {
-        this.from = from;
-        return this;
-    }
-
-    public NewsletterEntity setTo(LocalDateTime to) {
-        this.to = to;
-        return this;
-    }
-
-    public NewsletterEntity setAutomaticTime(Boolean automaticTime) {
-        this.automaticTime = automaticTime;
-        return this;
-    }
-
-    public NewsletterEntity setRecipientsListId(Long recipientsListId) {
-        this.recipientsListId = recipientsListId;
-        return this;
-    }
-
-    public NewsletterEntity setCampaign(String campaign) {
+    public PreparedNewsletterEntity setCampaign(String campaign) {
         this.campaign = campaign;
         return this;
     }
 
-    public NewsletterEntity setTags(List<String> tags) {
+    public PreparedNewsletterEntity setTags(List<String> tags) {
         this.tags = new ArrayList<>();
         for (String tag: tags) {
             this.tags.add(new TagEntity(tag));
@@ -138,7 +110,7 @@ public class NewsletterEntity extends BaseEntity  {
         return this;
     }
 
-    public NewsletterEntity setTags(String... tags) {
+    public PreparedNewsletterEntity setTags(String... tags) {
         this.tags = new ArrayList<>();
         for (String tag: tags) {
             this.tags.add(new TagEntity(tag));
@@ -146,18 +118,21 @@ public class NewsletterEntity extends BaseEntity  {
         return this;
     }
 
-    public NewsletterEntity setTemplateUrl(String templateUrl) {
+    public PreparedNewsletterEntity setTemplateUrl(String templateUrl) {
         this.templateUrl = templateUrl;
         return this;
     }
 
-    public NewsletterEntity setUnsubscribeTemplateUrl(String unsubscribeTemplateUrl) {
+    public PreparedNewsletterEntity setUnsubscribeTemplateUrl(String unsubscribeTemplateUrl) {
         this.unsubscribeTemplateUrl = unsubscribeTemplateUrl;
         return this;
     }
 
-    public NewsletterEntity setCsvUrl(String csvUrl) {
-        this.csvUrl = csvUrl;
+    public PreparedNewsletterEntity setText(String text) {
+        this.text = text;
         return this;
     }
+    
+    
+
 }

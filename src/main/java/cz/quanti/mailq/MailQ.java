@@ -286,6 +286,17 @@ public class MailQ {
     public void updateNewsletter(NewsletterEntity newsletter) throws InvalidRequestException, ApiException  {
         this.newsletterResource.updateNewsletter(newsletter);
     }
+    
+    /**
+     * Update prepared newsletter
+     * If newsletter started you can update only some newsletter data.
+     * @param preparedNewsletter
+     * @throws InvalidRequestException
+     * @throws ApiException 
+     */
+    public void updatePreparedNewsletter(PreparedNewsletterEntity preparedNewsletter) throws InvalidRequestException, ApiException  {
+        this.newsletterResource.updatePreparedNewsletter(preparedNewsletter);
+    }
 
     /**
      * Delete newsletter
