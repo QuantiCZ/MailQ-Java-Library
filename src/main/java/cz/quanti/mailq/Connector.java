@@ -62,7 +62,7 @@ public class Connector {
         }
     };
 
-    public EmptyResponse send(Request request) throws ApiException, InvalidRequestException, SocketTimeoutException, ConnectTimeoutException {
+    public EmptyResponse send(Request request) throws ApiException, InvalidRequestException {
         return this.send(request,EmptyResponse.class);
     }
 
