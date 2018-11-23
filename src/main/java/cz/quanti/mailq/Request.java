@@ -16,14 +16,20 @@ public class Request {
     private final Map<String,String> headers;
     private final Map<String,String> parameters;
     private final boolean companyRelated;
+    private final int timeout;
 
-    private Request(String url, String method, BaseEntity entity, Map<String, String> headers, Map<String, String> parameters, boolean companyRelated) {
+    private Request(String url, String method, BaseEntity entity, Map<String, String> headers, Map<String, String> parameters, boolean companyRelated, int timeout){
         this.path = url;
         this.method = method;
         this.headers = headers;
         this.parameters = parameters;
         this.entity = entity;
         this.companyRelated = companyRelated;
+        this.timeout = timeout;
+    }
+
+    private Request(String url, String method, BaseEntity entity, Map<String, String> headers, Map<String, String> parameters, boolean companyRelated) {
+        this(url, method, entity, headers, parameters, companyRelated, 1000);
     }
 
     public static RequestBuilder builder(String method, String url) {
@@ -62,6 +68,8 @@ public class Request {
         return companyRelated;
     }
 
+    public int getTimeout() {return timeout;}
+
     public static class RequestBuilder {
 
         private String path;
@@ -70,6 +78,7 @@ public class Request {
         private Map<String,String> headers = new HashMap<>();
         private Map<String,String> parameters = new HashMap<>();
         private Boolean companyRelated = true;
+        private int timeout = 1000;
 
 
 
@@ -125,8 +134,13 @@ public class Request {
             return this;
         }
 
+        public RequestBuilder timeout(int timeout){
+            this.timeout = timeout;
+            return this;
+        }
+
         public Request build() {
-            return new Request(path,method,entity,headers,parameters,companyRelated);
+            return new Request(path,method,entity,headers,parameters,companyRelated, timeout);
         }
 
     }

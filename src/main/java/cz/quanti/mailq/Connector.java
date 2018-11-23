@@ -15,24 +15,24 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.util.Map;
-
+import java.util.concurrent.TimeoutException;
 
 public class Connector {
 
@@ -62,11 +62,11 @@ public class Connector {
         }
     };
 
-    public EmptyResponse send(Request request) throws ApiException, InvalidRequestException {
+    public EmptyResponse send(Request request) throws ApiException, InvalidRequestException, SocketTimeoutException, ConnectTimeoutException {
         return this.send(request,EmptyResponse.class);
     }
 
-    public<T extends BaseEntity> T send(Request request, Class<T> responseType) throws ApiException, InvalidRequestException {
+    public<T extends BaseEntity> T send(Request request, Class<T> responseType) throws ApiException, InvalidRequestException{
         try {
             CloseableHttpClient httpclient = HttpClients.createDefault();
             URI uri = createUrl(request);
@@ -118,8 +118,8 @@ public class Connector {
         }
     }
 
-    private HttpUriRequest createHttpUriRequest(Request request, String url) {
-        HttpUriRequest httpRequest = null;
+    private HttpRequestBase createHttpUriRequest(Request request, String url) {
+        HttpRequestBase httpRequest = null;
         switch (request.getMethod()) {
             case HttpGet.METHOD_NAME: {
                 httpRequest = new HttpGet(url);
@@ -158,6 +158,14 @@ public class Connector {
             httpRequest.addHeader(headerName,request.getHeaders().get(headerName));
         }
         httpRequest.setHeader("X-Api-Key",apiKey);
+
+        int timeout = request.getTimeout();
+        RequestConfig.Builder requestConfig = RequestConfig.custom();
+        requestConfig.setConnectTimeout(timeout)
+                .setConnectionRequestTimeout(timeout)
+                .setSocketTimeout(timeout);
+        httpRequest.setConfig(requestConfig.build());
+
         return httpRequest;
     }
 

@@ -27,5 +27,13 @@ public class ValidatorResource extends BaseResource {
         this.getConnector().send(request);
     }
 
+    public void validate(String email, int timeout) throws ApiException, InvalidRequestException {
+        Request request = Request.builder(HttpPost.METHOD_NAME,"/validator/email/"+email)
+                .companyRelated(false)
+                .timeout(timeout)
+                .build();
+        this.getConnector().send(request);
+    }
+
 
 }
