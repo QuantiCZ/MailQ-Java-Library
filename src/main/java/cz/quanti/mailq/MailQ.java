@@ -7,7 +7,9 @@ import cz.quanti.mailq.entities.v2.*;
 import cz.quanti.mailq.exceptions.ApiException;
 import cz.quanti.mailq.exceptions.InvalidRequestException;
 import cz.quanti.mailq.resources.v2.*;
+import org.apache.http.conn.ConnectTimeoutException;
 
+import java.net.SocketTimeoutException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -286,13 +288,13 @@ public class MailQ {
     public void updateNewsletter(NewsletterEntity newsletter) throws InvalidRequestException, ApiException  {
         this.newsletterResource.updateNewsletter(newsletter);
     }
-    
+
     /**
      * Update prepared newsletter
      * If newsletter started you can update only some newsletter data.
      * @param preparedNewsletter
      * @throws InvalidRequestException
-     * @throws ApiException 
+     * @throws ApiException
      */
     public void updatePreparedNewsletter(PreparedNewsletterEntity preparedNewsletter) throws InvalidRequestException, ApiException  {
         this.newsletterResource.updatePreparedNewsletter(preparedNewsletter);
@@ -913,13 +915,23 @@ public class MailQ {
     }
 
     /**
-     * Validate e-mail address. This validation also validate MX domain.
+     * Validate e-mail address. This validation also validate MX domain. Validation can take max 1000ms
      * @param email
      * @throws InvalidRequestException
      * @throws ApiException
      */
     public void validate(String email) throws InvalidRequestException, ApiException {
         this.validatorResource.validate(email);
+    }
+
+    /**
+     * Validate e-mail address. This validation also validate MX domain. Validation can take max 1000ms
+     * @param email
+     * @throws InvalidRequestException
+     * @throws ApiException
+     */
+    public void validate(String email, int timeout) throws InvalidRequestException, ApiException {
+        this.validatorResource.validate(email, timeout);
     }
 
 }
