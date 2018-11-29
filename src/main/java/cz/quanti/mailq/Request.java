@@ -29,7 +29,7 @@ public class Request {
     }
 
     private Request(String url, String method, BaseEntity entity, Map<String, String> headers, Map<String, String> parameters, boolean companyRelated) {
-        this(url, method, entity, headers, parameters, companyRelated, 1000);
+        this(url, method, entity, headers, parameters, companyRelated, 0);
     }
 
     public static RequestBuilder builder(String method, String url) {
@@ -78,8 +78,7 @@ public class Request {
         private Map<String,String> headers = new HashMap<>();
         private Map<String,String> parameters = new HashMap<>();
         private Boolean companyRelated = true;
-        private int timeout = 1000;
-
+        private int timeout = 0;
 
 
         public RequestBuilder(String method, String url) {
