@@ -160,11 +160,13 @@ public class Connector {
         httpRequest.setHeader("X-Api-Key",apiKey);
 
         int timeout = request.getTimeout();
-        RequestConfig.Builder requestConfig = RequestConfig.custom();
-        requestConfig.setConnectTimeout(timeout)
-                .setConnectionRequestTimeout(timeout)
-                .setSocketTimeout(timeout);
-        httpRequest.setConfig(requestConfig.build());
+        if (timeout != 0){
+            RequestConfig.Builder requestConfig = RequestConfig.custom();
+            requestConfig.setConnectTimeout(timeout)
+                    .setConnectionRequestTimeout(timeout)
+                    .setSocketTimeout(timeout);
+            httpRequest.setConfig(requestConfig.build());
+        }
 
         return httpRequest;
     }

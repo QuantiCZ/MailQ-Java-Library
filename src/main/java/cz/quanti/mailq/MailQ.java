@@ -915,7 +915,7 @@ public class MailQ {
     }
 
     /**
-     * Validate e-mail address. This validation also validate MX domain. Validation can take max 1000ms
+     * Validate e-mail address. This validation also validate MX domain.
      * @param email
      * @throws InvalidRequestException
      * @throws ApiException
@@ -925,7 +925,7 @@ public class MailQ {
     }
 
     /**
-     * Validate e-mail address. This validation also validate MX domain. Validation can take max specified time
+     * Validate e-mail address. This validation also validate MX domain. Validation can take max specified timeout in milliseconds
      * @param email
      * @throws InvalidRequestException
      * @throws ApiException
