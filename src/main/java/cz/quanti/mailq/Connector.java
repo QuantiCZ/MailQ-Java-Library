@@ -80,7 +80,7 @@ public class Connector {
                     return gson.fromJson(response.getContent(),responseType);
                 }
                 else {
-                    return responseType.newInstance();
+                    return responseType.getDeclaredConstructor().newInstance();
                 }
             }
             else {
