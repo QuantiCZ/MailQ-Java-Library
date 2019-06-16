@@ -17,6 +17,7 @@ public class NotificationEntity extends BaseEntity {
     private String template;
     private NotificationStatus status;
     private LinkEntity company;
+    private String ampTemplate;
 
     public Long getId() {
         return id;
@@ -90,6 +91,15 @@ public class NotificationEntity extends BaseEntity {
 
     public NotificationEntity setTemplate(String template) {
         this.template = template;
+        return this;
+    }
+
+    public String getAmpTemplate() {
+        return ampTemplate;
+    }
+
+    public NotificationEntity setAmpTemplate(String ampTemplate) {
+        this.ampTemplate = ampTemplate;
         return this;
     }
 }

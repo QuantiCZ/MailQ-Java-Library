@@ -27,6 +27,8 @@ public class NewsletterEntity extends BaseEntity  {
     private String templateUrl;
     private String unsubscribeTemplateUrl;
     private String csvUrl;
+    private String ampTemplate;
+    private String ampTemplateUrl;
 
     public Long getId() {
         return id;
@@ -78,6 +80,14 @@ public class NewsletterEntity extends BaseEntity  {
 
     public LinkEntity getCompany() {
         return company;
+    }
+
+    public String getAmpTemplate() {
+        return ampTemplate;
+    }
+
+    public String getAmpTemplateUrl() {
+        return ampTemplateUrl;
     }
 
     public NewsletterEntity setName(String name) {
@@ -159,5 +169,13 @@ public class NewsletterEntity extends BaseEntity  {
     public NewsletterEntity setCsvUrl(String csvUrl) {
         this.csvUrl = csvUrl;
         return this;
+    }
+
+    public void setAmpTemplate(String ampTemplate) {
+        this.ampTemplate = ampTemplate;
+    }
+
+    public void setAmpTemplateUrl(String ampTemplateUrl) {
+        this.ampTemplateUrl = ampTemplateUrl;
     }
 }
