@@ -171,11 +171,13 @@ public class NewsletterEntity extends BaseEntity  {
         return this;
     }
 
-    public void setAmpTemplate(String ampTemplate) {
+    public NewsletterEntity setAmpTemplate(String ampTemplate) {
         this.ampTemplate = ampTemplate;
+        return this;
     }
 
-    public void setAmpTemplateUrl(String ampTemplateUrl) {
+    public NewsletterEntity setAmpTemplateUrl(String ampTemplateUrl) {
         this.ampTemplateUrl = ampTemplateUrl;
+        return this;
     }
 }

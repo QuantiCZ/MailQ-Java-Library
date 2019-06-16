@@ -23,6 +23,7 @@ notification.setName("Order confirmation")
         .setSubject("Order confirmation")
         .setSendAs("Company inc.")
         .setTemplate("tHa42Av5s6==")
+        .setAmpTemplate("QWx0ZXJuYXRpdmUgYmFzZTY0IGVtYWlsIHRleHQ=")
         .setAppliedSenderEmail("robot@example.org")
         .setText("Your order is confirmed")
         .setCode("XS-12");
